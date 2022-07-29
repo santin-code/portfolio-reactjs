@@ -14,8 +14,7 @@ nav{
   backdrop-filter: blur(5px);
 }
 
-nav a{
-  color: var(--color-light);
+.active{
+  color: var(--color-white);
 }
-
 
