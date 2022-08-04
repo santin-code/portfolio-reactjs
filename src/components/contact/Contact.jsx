@@ -1,10 +1,29 @@
-import React from 'react'
 import './contact.css'
 import { BiMailSend } from 'react-icons/bi'
 import { SiMessenger } from 'react-icons/si'
 import { BsWhatsapp } from 'react-icons/bs'
+import React, { useRef } from 'react';
+import emailjs from 'emailjs-com';
+import swal from 'sweetalert';
 
 const Contact = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_c59lekq', 'template_bndaptp', form.current, 'LMcC1WiM2wAwiJpUr')
+    e.target.reset()
+    swal({
+        text:'mensaje enviado',
+        icon:'success',
+        timer:'3000'
+      })
+      }
+
+
+
   return (
     <section id='contact'>
       <h5>Get In Touch</h5>
@@ -34,7 +53,7 @@ const Contact = () => {
           </article>
         </div>
         {/* END THE CONTACT OPTIONS */}
-        <form action="">
+        <form ref={form} onSubmit={sendEmail}>
           <input type='text' name='name' placeholder='Your Full Name' required  />
           <input type='email' name='email' placeholder='Your Email' required />
           <textarea name='message' rows='7' placeholder='Your Message' required></textarea>
